@@ -27,9 +27,9 @@ struct SMVMI_Instruction {
     size_t numargs;
 };
 
-const struct SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code);
-const struct SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name);
-const char * SMVMI_Instruction_fullname_to_name(const char * fullname);
+const struct SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
+const struct SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
+const char * SMVMI_Instruction_fullname_to_name(const char * fullname) __attribute__ ((nonnull(1),warn_unused_result));
 
 #ifdef __cplusplus
 } /* extern "C" { */

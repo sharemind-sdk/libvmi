@@ -15,3 +15,6 @@ DESTDIR = ../../lib/
 
 SOURCES += \
     instr.c
+
+OTHER_FILES += \
+    instr.h

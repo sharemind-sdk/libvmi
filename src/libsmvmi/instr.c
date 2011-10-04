@@ -55,7 +55,11 @@ const struct SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) 
 
             do {
                 ++instrName;
-            } while (*instrName != '.' && *instrName);
+                if (*instrName == '.') {
+                    ++instrName;
+                    break;
+                }
+            } while (*instrName);
         } while (*instrName);
         ++instr;
     }

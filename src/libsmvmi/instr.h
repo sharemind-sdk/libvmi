@@ -21,14 +21,14 @@ extern "C" {
 
 #define SMVMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SM_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
 
-struct SMVMI_Instruction {
+typedef struct {
     const char * fullname;
     uint64_t code;
     size_t numargs;
-};
+} SMVMI_Instruction;
 
-const struct SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
-const struct SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
+const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
+const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
 const char * SMVMI_Instruction_fullname_to_name(const char * fullname) __attribute__ ((nonnull(1),warn_unused_result));
 
 #ifdef __cplusplus

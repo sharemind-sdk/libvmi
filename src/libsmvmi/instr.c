@@ -11,27 +11,17 @@
 
 #include <assert.h>
 #include <string.h>
-
 #include "../m4/instruction_structs.h"
-#ifdef SMVMI_FAST_BUILD
 #include "../m4/instruction_index.h"
-#endif
+
 
 const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) {
-#ifndef SMVMI_FAST_BUILD
-    switch (code) {
-#include "../m4/instruction_from_code_cases.h"
-        default:
-            break;
-    }
-#else
     const SMVMI_Instruction * const * instr = &SMVMI_instructions_index[0];
     while (*instr) {
         if ((*instr)->code == code)
             return *instr;
         ++instr;
     }
-#endif
 
     return NULL;
 }
@@ -40,11 +30,6 @@ const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) {
 const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) {
     assert(name);
 
-#ifndef SMVMI_FAST_BUILD
-#define N name
-#include "../m4/instruction_from_name_cases.h"
-#undef N
-#else
     const SMVMI_Instruction * const * instr = &SMVMI_instructions_index[0];
     while (*instr) {
         const char * instrName = (*instr)->fullName;
@@ -63,7 +48,6 @@ const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) {
         } while (*instrName);
         ++instr;
     }
-#endif
 
     return NULL;
 }

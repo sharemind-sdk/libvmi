@@ -47,7 +47,7 @@ const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) {
 #else
     const SMVMI_Instruction * const * instr = &SMVMI_instructions_index[0];
     while (*instr) {
-        const char * instrName = (*instr)->fullname;
+        const char * instrName = (*instr)->fullName;
 
         do {
             if (strcmp(instrName, name) == 0)

@@ -7,8 +7,8 @@
  * code is subject to the appropriate license agreement.
  */
 
-#ifndef LIBSMVMI_INSTR_H
-#define LIBSMVMI_INSTR_H
+#ifndef SHAREMIND_LIBSMVMI_INSTR_H
+#define SHAREMIND_LIBSMVMI_INSTR_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -35,4 +35,4 @@ const char * SMVMI_Instruction_fullname_to_name(const char * fullName) __attribu
 } /* extern "C" { */
 #endif
 
-#endif /* LIBSMVMI_INSTR_H */
+#endif /* SHAREMIND_LIBSMVMI_INSTR_H */

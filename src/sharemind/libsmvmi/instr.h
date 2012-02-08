@@ -10,9 +10,9 @@
 #ifndef SHAREMIND_LIBSMVMI_INSTR_H
 #define SHAREMIND_LIBSMVMI_INSTR_H
 
+#include <sharemind/preprocessor.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "../preprocessor.h"
 
 
 #ifdef __cplusplus

@@ -25,11 +25,11 @@ typedef struct {
     const char * fullName;
     uint64_t code;
     size_t numArgs;
-} SMVMI_Instruction;
+} SharemindVmInstruction;
 
-const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
-const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
-const char * SMVMI_Instruction_fullname_to_name(const char * fullName) __attribute__ ((nonnull(1),warn_unused_result));
+const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
+const SharemindVmInstruction * sharemind_vm_instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
+const char * sharemind_vm_instruction_fullname_to_name(const char * fullName) __attribute__ ((nonnull(1),warn_unused_result));
 
 #ifdef __cplusplus
 } /* extern "C" { */

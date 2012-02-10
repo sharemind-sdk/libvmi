@@ -10,13 +10,13 @@
 #include "instr.h"
 
 #include <assert.h>
+#include <sharemind/m4/instruction_structs.h>
+#include <sharemind/m4/instruction_index.h>
 #include <string.h>
-#include "../m4/instruction_structs.h"
-#include "../m4/instruction_index.h"
 
 
-const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) {
-    const SMVMI_Instruction * const * instr = &SMVMI_instructions_index[0];
+const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) {
+    const SharemindVmInstruction * const * instr = &sharemindVmInstructionIndex[0];
     while (*instr) {
         if ((*instr)->code == code)
             return *instr;
@@ -27,10 +27,10 @@ const SMVMI_Instruction * SMVMI_Instruction_from_code(uint64_t code) {
 }
 
 
-const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) {
+const SharemindVmInstruction * sharemind_vm_instruction_from_name(const char * name) {
     assert(name);
 
-    const SMVMI_Instruction * const * instr = &SMVMI_instructions_index[0];
+    const SharemindVmInstruction * const * instr = &sharemindVmInstructionIndex[0];
     while (*instr) {
         const char * instrName = (*instr)->fullName;
 
@@ -52,7 +52,7 @@ const SMVMI_Instruction * SMVMI_Instruction_from_name(const char * name) {
     return NULL;
 }
 
-const char * SMVMI_Instruction_fullname_to_name(const char * fullname) {
+const char * sharemind_vm_instruction_fullname_to_name(const char * fullname) {
     assert(fullname);
     const char * r = fullname;
     while (*r != '\0') {

@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-#define SMVMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SM_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
+#define SMVMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SHAREMIND_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
 
 typedef struct {
     const char * fullName;

@@ -7,8 +7,8 @@
  * code is subject to the appropriate license agreement.
  */
 
-#ifndef SHAREMIND_LIBSMVMI_INSTR_H
-#define SHAREMIND_LIBSMVMI_INSTR_H
+#ifndef SHAREMIND_LIBVMI_INSTR_H
+#define SHAREMIND_LIBVMI_INSTR_H
 
 #include <sharemind/preprocessor.h>
 #include <stddef.h>
@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-#define SMVMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SHAREMIND_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
+#define SHAREMIND_VMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SHAREMIND_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
 
 typedef struct {
     const char * fullName;
@@ -35,4 +35,4 @@ const char * sharemind_vm_instruction_fullname_to_name(const char * fullName) __
 } /* extern "C" { */
 #endif
 
-#endif /* SHAREMIND_LIBSMVMI_INSTR_H */
+#endif /* SHAREMIND_LIBVMI_INSTR_H */

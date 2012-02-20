@@ -44,7 +44,10 @@ INCLUDE_DIRECTORIES(BEFORE SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/../sharemind/.."
 IF(NOT SHAREMIND_VM_M4_SOURCE_DIR)
     ADD_SUBDIRECTORY("${SHAREMIND_EXT_VM_M4_DIR}/src/sharemind" "${SHAREMIND_EXT_DIR}/vm_m4")
 ENDIF(NOT SHAREMIND_VM_M4_SOURCE_DIR)
-SET(M4_DIR_B "${CMAKE_BINARY_DIR}/generated_sources/sharemind/m4")
+
+IF(NOT M4_DIR_B)
+    SET(M4_DIR_B "${SHAREMIND_GEN_DIR}/sharemind/m4")
+ENDIF(NOT M4_DIR_B)
 
 SET(CMAKE_C_FLAGS "-std=gnu99 -Wall -Wextra -O2 -fstrict-aliasing -Wstrict-aliasing=1 -fwrapv -Wabi -Wbad-function-cast -Wc++-compat -Wformat -Wswitch-default -Wunused -Wfloat-equal -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wconversion -Wsign-conversion -Wlogical-op -Wunused-macros")
 SET(CMAKE_CXX_FLAGS "-std=gnu++98 -Wall -Wextra -O2 -fstrict-aliasing -Wstrict-aliasing=1 -fwrapv -Wabi -Wformat -Wswitch-default -Wunused -Wfloat-equal -Wshadow -Wpointer-arith -Wcast-qual -Wconversion -Wsign-conversion -Wlogical-op -Wunused-macros")
@@ -62,8 +65,6 @@ SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       LIBRARY_OUTPUT_DIRECTORY "${SHAREMIND_LIB_DIR}"
                       VERSION "0.1.0.0"
                       SOVERSION "0.1")
-SET_SOURCE_FILES_PROPERTIES("libvmi/instr.c" PROPERTIES OBJECT_DEPENDS
-                            "${M4_DIR_B}/instruction_structs.h;${M4_DIR_B}/instruction_index.h")
 INSTALL(DIRECTORY "libvmi/"
         DESTINATION "${SHAREMIND_INCLUDE_DESTINATION}/libvmi"
         FILES_MATCHING PATTERN "*.h")

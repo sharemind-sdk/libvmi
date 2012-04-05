@@ -22,9 +22,9 @@ extern "C" {
 #define SHAREMIND_VMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SHAREMIND_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
 
 typedef struct {
-    const char * fullName;
-    uint64_t code;
-    size_t numArgs;
+    const char fullName[64];
+    const uint64_t code;
+    const size_t numArgs;
 } SharemindVmInstruction;
 
 const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));

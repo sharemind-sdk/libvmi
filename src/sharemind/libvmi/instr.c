@@ -10,16 +10,18 @@
 #include "instr.h"
 
 #include <assert.h>
-#include <sharemind/m4/instruction_structs.h>
-#include <sharemind/m4/instruction_index.h>
 #include <string.h>
 
 
+// Instruction structs list
+#include <sharemind/m4/instruction_index.h>
+
+
 const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) {
-    const SharemindVmInstruction * const * instr = &sharemindVmInstructionIndex[0];
-    while (*instr) {
-        if ((*instr)->code == code)
-            return *instr;
+    const SharemindVmInstruction * instr = &sharemindVmInstructionIndex[0];
+    while (instr->fullName[0]) {
+        if (instr->code == code)
+            return instr;
         ++instr;
     }
 
@@ -30,13 +32,13 @@ const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code)
 const SharemindVmInstruction * sharemind_vm_instruction_from_name(const char * name) {
     assert(name);
 
-    const SharemindVmInstruction * const * instr = &sharemindVmInstructionIndex[0];
-    while (*instr) {
-        const char * instrName = (*instr)->fullName;
+    const SharemindVmInstruction * instr = &sharemindVmInstructionIndex[0];
+    while (instr->fullName[0]) {
+        const char * instrName = instr->fullName;
 
         do {
             if (strcmp(instrName, name) == 0)
-                return *instr;
+                return instr;
 
             do {
                 ++instrName;

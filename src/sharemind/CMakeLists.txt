@@ -49,7 +49,8 @@ SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       SOVERSION "0.1")
 
 INSTALL(TARGETS "libvmi"
-        LIBRARY DESTINATION "lib")
+        LIBRARY DESTINATION "lib"
+        ARCHIVE DESTINATION "lib")
 
 INSTALL(FILES ${SHAREMIND_LIBVMI_HEADERS}
         DESTINATION "include/sharemind/libvmi")

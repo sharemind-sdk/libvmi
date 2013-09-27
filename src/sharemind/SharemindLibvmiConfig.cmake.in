@@ -1,0 +1,17 @@
+#
+# Copyright (C) Cybernetica AS
+#
+# All rights are reserved. Reproduction in whole or part is prohibited
+# without the written consent of the copyright owner. The usage of this
+# code is subject to the appropriate license agreement.
+#
+
+# This file defines the following variables:
+#   SharemindLibvmi_INCLUDE_DIRS - include directories
+#   SharemindLibvmi_LIBRARIES    - libraries to link against
+#   SharemindLibvmi_DEFINITIONS  - required compiler definitions
+
+
+SET(SharemindLibvmi_INCLUDE_DIRS @LIBVMI_INSTALL_INCLUDE_DIRS@)
+SET(SharemindLibvmi_LIBRARIES @LIBVMI_INSTALL_LINK_LIBRARIES@)
+SET(SharemindLibvmi_DEFINITIONS @LIBVMI_INSTALL_DEFINITIONS@)

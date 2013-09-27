@@ -30,8 +30,8 @@ ENDMACRO(FLAGS_MAGIC)
 FLAGS_MAGIC("Weverything")
 FLAGS_MAGIC("Wlogical-op")
 
-
-ADD_DEFINITIONS("-D_XOPEN_SOURCE=500" "-D__STDC_LIMIT_MACROS")
+SET(LIBVMI_INSTALL_DEFINITIONS "-D__STDC_LIMIT_MACROS")
+ADD_DEFINITIONS("${LIBVMI_INSTALL_DEFINITIONS}")
 
 
 ################################################################################
@@ -47,9 +47,11 @@ ENDIF()
 ADD_LIBRARY("libvmi" ${SHAREMIND_LIBVM_LINKING_MODE}
             "libvmi/instr.c" ${SHAREMIND_LIBVMI_HEADERS})
 ADD_DEPENDENCIES(libvmi m4_instruction_structs_h m4_instruction_index_h)
+
+SET(LIBVMI_VERSION "0.1.0.0")
 SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       OUTPUT_NAME "sharemind_vmi"
-                      VERSION "0.1.0.0"
+                      VERSION "${LIBVMI_VERSION}"
                       SOVERSION "0.1")
 
 INSTALL(TARGETS "libvmi"
@@ -58,3 +60,17 @@ INSTALL(TARGETS "libvmi"
 
 INSTALL(FILES ${SHAREMIND_LIBVMI_HEADERS}
         DESTINATION "include/sharemind/libvmi")
+
+# Install cmake files:
+FILE(GLOB_RECURSE sharemind_libvmi_in_files "${CMAKE_CURRENT_SOURCE_DIR}/*.in")
+ADD_CUSTOM_TARGET("include_sharemind_libvmi_in_files_in_IDE" SOURCES ${sharemind_libvmi_in_files})
+SET(LIBVMI_INSTALL_LINK_LIBRARIES "-L${CMAKE_INSTALL_PREFIX}/lib" "-lsharemind_vmi")
+SET(LIBVMI_INSTALL_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
+
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibvmiConfig.cmake.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfig.cmake" @ONLY)
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibvmiConfigVersion.cmake.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfigVersion.cmake" @ONLY)
+INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfig.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfigVersion.cmake"
+        DESTINATION "lib/SharemindLibvmi")

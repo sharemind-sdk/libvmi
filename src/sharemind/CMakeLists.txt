@@ -54,6 +54,14 @@ SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       VERSION "${LIBVMI_VERSION}"
                       SOVERSION "0.1")
 
+FIND_PROGRAM(LIBVMI_STRIP strip)
+IF(NOT LIBVMI_STRIP)
+    MESSAGE(WARNING "\"strip\" not found.")
+ELSE()
+    ADD_CUSTOM_COMMAND(TARGET "libvmi" POST_BUILD COMMAND
+                       "${LIBVMI_STRIP}" --strip-all "$<TARGET_FILE:libvmi>")
+ENDIF()
+
 INSTALL(TARGETS "libvmi"
         LIBRARY DESTINATION "lib"
         ARCHIVE DESTINATION "lib")

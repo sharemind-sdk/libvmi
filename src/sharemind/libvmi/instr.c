@@ -14,8 +14,13 @@
 
 
 // Instruction structs list
+#ifdef __GNUC__
+#pragma GCC visibility push(hidden)
+#endif
 #include <sharemind/m4/instruction_index.h>
-
+#ifdef __GNUC__
+#pragma GCC visibility pop
+#endif
 
 const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) {
     const SharemindVmInstruction * instr = &sharemindVmInstructionIndex[0];

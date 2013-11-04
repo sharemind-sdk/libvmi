@@ -59,7 +59,7 @@ IF(NOT LIBVMI_STRIP)
     MESSAGE(WARNING "\"strip\" not found.")
 ELSE()
     ADD_CUSTOM_COMMAND(TARGET "libvmi" POST_BUILD COMMAND
-                       "${LIBVMI_STRIP}" --strip-all "$<TARGET_FILE:libvmi>")
+                       "${LIBVMI_STRIP}" --strip-all "$<TARGET_FILE:libvmi>" || "${LIBVMI_STRIP}" "$<TARGET_FILE:libvmi>")
 ENDIF()
 
 INSTALL(TARGETS "libvmi"

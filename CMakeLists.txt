@@ -10,6 +10,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION "2.8.12")
 PROJECT("SHAREMIND_LIBVMI" "C")
 
+SET(LIBVMI_VERSION "0.1.0.0")
+
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
@@ -46,11 +48,6 @@ CHECK_ADD_COMPILER_FLAG("-Wlogical-op")
 SET(LIBVMI_INSTALL_DEFINITIONS "-D__STDC_LIMIT_MACROS")
 ADD_DEFINITIONS("${LIBVMI_INSTALL_DEFINITIONS}")
 
-
-################################################################################
-# libvmi
-################################################################################
-
 SET(SHAREMIND_LIBVMI_HEADERS "src/instr.h")
 
 IF(NOT SHAREMIND_LIBVMI_LINKING_MODE)
@@ -61,7 +58,6 @@ ADD_LIBRARY("libvmi" ${SHAREMIND_LIBVMI_LINKING_MODE}
             "src/instr.c" ${SHAREMIND_LIBVMI_HEADERS})
 ADD_DEPENDENCIES(libvmi m4_instruction_structs_h m4_instruction_index_h)
 
-SET(LIBVMI_VERSION "0.1.0.0")
 SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       OUTPUT_NAME "sharemind_vmi"
                       VERSION "${LIBVMI_VERSION}"

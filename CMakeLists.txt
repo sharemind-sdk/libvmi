@@ -24,7 +24,7 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}
                     ${SharemindVmM4_INCLUDE_DIRS})
 
 ADD_COMPILE_OPTIONS(
-  "-std=c99" "-O2" "-fwrapv" "-pthread" "-Wall" "-Wextra" "-Wunused" "-Wabi"
+  "-std=c99" "-O2" "-fwrapv" "-Wall" "-Wextra" "-Wunused" "-Wabi"
   "-Wstrict-aliasing=1" "-Wbad-function-cast" "-Wformat" "-Wswitch-default"
   "-Wfloat-equal" "-Wshadow" "-Wpointer-arith" "-Wcast-qual"
   "-Wstrict-prototypes" "-Wconversion" "-Wsign-conversion" "-Wunused-macros"

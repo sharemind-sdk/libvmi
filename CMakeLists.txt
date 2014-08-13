@@ -18,7 +18,6 @@ FOREACH(dir IN LISTS CMAKE_PREFIX_PATH)
 ENDFOREACH()
 INCLUDE_DIRECTORIES(BEFORE SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/../")
 
-# Find boost - seems to be required since the variables aren't populated otherwise
 FIND_PACKAGE(Boost REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
@@ -87,14 +86,17 @@ INSTALL(FILES ${SHAREMIND_LIBVMI_HEADERS}
 
 # Install cmake files:
 FILE(GLOB_RECURSE sharemind_libvmi_in_files "${CMAKE_CURRENT_SOURCE_DIR}/*.in")
-ADD_CUSTOM_TARGET("include_sharemind_libvmi_in_files_in_IDE" SOURCES ${sharemind_libvmi_in_files})
-SET(LIBVMI_INSTALL_LINK_LIBRARIES "-L${CMAKE_INSTALL_PREFIX}/lib" "-lsharemind_vmi")
+ADD_CUSTOM_TARGET("include_sharemind_libvmi_in_files_in_IDE"
+                  SOURCES ${sharemind_libvmi_in_files})
+SET(LIBVMI_INSTALL_LINK_LIBRARIES "-L${CMAKE_INSTALL_PREFIX}/lib"
+                                  "-lsharemind_vmi")
 SET(LIBVMI_INSTALL_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibvmiConfig.cmake.in"
                "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfig.cmake" @ONLY)
-CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibvmiConfigVersion.cmake.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfigVersion.cmake" @ONLY)
+CONFIGURE_FILE(
+    "${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibvmiConfigVersion.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfigVersion.cmake" @ONLY)
 INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfig.cmake"
               "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibvmiConfigVersion.cmake"
         DESTINATION "lib/SharemindLibvmi")

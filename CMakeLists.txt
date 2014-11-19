@@ -59,7 +59,6 @@ ENDIF()
 
 ADD_LIBRARY("libvmi" ${SHAREMIND_LIBVMI_LINKING_MODE}
             "src/instr.c" ${SHAREMIND_LIBVMI_HEADERS})
-ADD_DEPENDENCIES(libvmi m4_instruction_structs_h m4_instruction_index_h)
 
 SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       OUTPUT_NAME "sharemind_vmi"

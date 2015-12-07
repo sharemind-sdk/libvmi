@@ -75,14 +75,17 @@ SET_TARGET_PROPERTIES("libvmi" PROPERTIES
                       VERSION "${LIBVMI_VERSION}"
                       SOVERSION "0.1")
 
-FIND_PROGRAM(LIBVMI_STRIP strip)
-IF(NOT LIBVMI_STRIP)
-    MESSAGE(WARNING "\"strip\" not found.")
-ELSE()
-    ADD_CUSTOM_COMMAND(TARGET "libvmi" POST_BUILD COMMAND
-                       "${LIBVMI_STRIP}" --strip-all "$<TARGET_FILE:libvmi>"
-                       || "${LIBVMI_STRIP}" "$<TARGET_FILE:libvmi>"
-                       || "${CMAKE_COMMAND}" -E echo "STRIP FAILED!!!" || true)
+
+IF(NOT "${SHAREMIND_LIBVMI_LINKING_MODE}" STREQUAL "STATIC")
+    FIND_PROGRAM(LIBVMI_STRIP strip)
+    IF(NOT LIBVMI_STRIP)
+        MESSAGE(WARNING "\"strip\" not found.")
+    ELSE()
+        ADD_CUSTOM_COMMAND(TARGET "libvmi" POST_BUILD COMMAND
+                           "${LIBVMI_STRIP}" --strip-all "$<TARGET_FILE:libvmi>"
+                           || "${LIBVMI_STRIP}" "$<TARGET_FILE:libvmi>"
+                           || "${CMAKE_COMMAND}" -E echo "STRIP FAILED!!!" || true)
+    ENDIF()
 ENDIF()
 
 INSTALL(TARGETS "libvmi"

@@ -18,11 +18,11 @@
 #
 
 # This file defines the following variables:
-#   SharemindLibvmi_INCLUDE_DIRS - include directories
-#   SharemindLibvmi_LIBRARIES    - libraries to link against
-#   SharemindLibvmi_DEFINITIONS  - required compiler definitions
+#   SharemindLibVmi_INCLUDE_DIRS - include directories
+#   SharemindLibVmi_LIBRARIES    - libraries to link against
+#   SharemindLibVmi_DEFINITIONS  - required compiler definitions
 
 
-SET(SharemindLibvmi_INCLUDE_DIRS @LIBVMI_INSTALL_INCLUDE_DIRS@)
-SET(SharemindLibvmi_LIBRARIES @LIBVMI_INSTALL_LINK_LIBRARIES@)
-SET(SharemindLibvmi_DEFINITIONS @LIBVMI_INSTALL_DEFINITIONS@)
+SET(SharemindLibVmi_INCLUDE_DIRS @SharemindLibVmi_INCLUDE_DIRS@)
+SET(SharemindLibVmi_LIBRARIES @SharemindLibVmi_LINK_LIBRARIES@)
+SET(SharemindLibVmi_DEFINITIONS @SharemindLibVmi_DEFINITIONS@)

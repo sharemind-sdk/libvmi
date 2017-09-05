@@ -53,10 +53,13 @@ INSTALL(FILES ${SharemindLibVmi_HEADERS}
         COMPONENT "dev")
 
 # Install cmake files:
-SET(SharemindLibVmi_LINK_LIBRARIES "-L${CMAKE_INSTALL_PREFIX}/lib"
-                                  "-lsharemind_vmi")
-SET(SharemindLibVmi_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
-SharemindUseCMakeFindFiles()
+SharemindCreateCMakeFindFiles(
+    INCLUDE_DIRS
+        "${CMAKE_INSTALL_PREFIX}/include"
+    LIBRARIES
+        "-L${CMAKE_INSTALL_PREFIX}/lib"
+        "-lsharemind_vmi"
+)
 
 # Packaging:
 SharemindSetupPackaging()

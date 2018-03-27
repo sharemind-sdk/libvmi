@@ -27,7 +27,6 @@ FIND_PACKAGE(SharemindCMakeHelpers REQUIRED)
 
 SharemindSetProjectVersion()
 
-FIND_PACKAGE(Boost REQUIRED)
 FIND_PACKAGE(SharemindVmM4 REQUIRED)
 
 SharemindSetC99CompileOptions()
@@ -39,7 +38,6 @@ SharemindAddSharedLibrary("libvmi"
     OUTPUT_NAME "sharemind_vmi"
     SOURCES ${SharemindLibVmi_SOURCES} ${SharemindLibVmi_HEADERS}
     INCLUDE_DIRECTORIES
-        ${Boost_INCLUDE_DIRS}
         ${SharemindVmM4_INCLUDE_DIRS}
     LEGACY_DEFINITIONS
         ${SharemindVmM4_DEFINITIONS}

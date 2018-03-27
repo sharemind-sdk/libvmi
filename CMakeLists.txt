@@ -27,7 +27,7 @@ FIND_PACKAGE(SharemindCMakeHelpers REQUIRED)
 
 SharemindSetProjectVersion()
 
-FIND_PACKAGE(SharemindVmM4 REQUIRED)
+FIND_PACKAGE(SharemindVmM4 0.3.0 REQUIRED)
 
 SharemindSetC99CompileOptions()
 

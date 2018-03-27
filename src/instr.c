@@ -24,13 +24,19 @@
 
 
 // Instruction structs list
+#define SHAREMIND_HANDLE_VMI_INSTRUCTION(iFullname, iCode, iNumArgs) \
+    { .fullName = iFullname, .code = iCode, .numArgs = iNumArgs ## u },
 #ifdef __GNUC__
 #pragma GCC visibility push(hidden)
 #endif
+static const SharemindVmInstruction sharemindVmInstructionIndex[] = {
 #include <sharemind/m4/instruction_index.h>
+    { .fullName = "", .code = 0u, .numArgs = 0u }
+};
 #ifdef __GNUC__
 #pragma GCC visibility pop
 #endif
+#undef SHAREMIND_HANDLE_VMI_INSTRUCTION
 
 const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) {
     const SharemindVmInstruction * instr = &sharemindVmInstructionIndex[0];

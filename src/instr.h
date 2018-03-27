@@ -20,7 +20,6 @@
 #ifndef SHAREMIND_LIBVMI_INSTR_H
 #define SHAREMIND_LIBVMI_INSTR_H
 
-#include <sharemind/preprocessor.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -28,8 +27,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#define SHAREMIND_VMI_MAKE_INSTR(a,b,c,d,e,f,g,h) SHAREMIND_MAKE_UINT64_BE(a,b,c,d,e,f,g,h)
 
 typedef struct {
     const char fullName[64];

@@ -20,26 +20,30 @@
 #ifndef SHAREMIND_LIBVMI_INSTR_H
 #define SHAREMIND_LIBVMI_INSTR_H
 
-#include <stddef.h>
-#include <stdint.h>
+#include <cstddef>
+#include <cstdint>
+#include <sharemind/SimpleUnorderedStringMap.h>
+#include <sharemind/UnorderedMap.h>
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace sharemind {
 
-typedef struct {
-    const char fullName[64];
-    const uint64_t code;
-    const size_t numArgs;
-} SharemindVmInstruction;
+struct VmInstructionInfo {
+    char const * fullName;
+    std::size_t fullNameSize;
+    std::uint64_t code;
+    std::size_t numArgs;
+};
 
-const SharemindVmInstruction * sharemind_vm_instruction_from_code(uint64_t code) __attribute__ ((warn_unused_result));
-const SharemindVmInstruction * sharemind_vm_instruction_from_name(const char * name) __attribute__ ((nonnull(1),warn_unused_result));
-const char * sharemind_vm_instruction_fullname_to_name(const char * fullName) __attribute__ ((nonnull(1),warn_unused_result));
+SimpleUnorderedStringMap<VmInstructionInfo const &> const &
+instructionFullnameMap();
 
-#ifdef __cplusplus
-} /* extern "C" { */
-#endif
+SimpleUnorderedStringMap<VmInstructionInfo const &> const &
+instructionNameMap();
+
+UnorderedMap<std::uint64_t, VmInstructionInfo const &> const &
+instructionCodeMap();
+
+} /* namespace sharemind { */
 
 #endif /* SHAREMIND_LIBVMI_INSTR_H */

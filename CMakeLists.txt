@@ -18,7 +18,7 @@
 #
 
 CMAKE_MINIMUM_REQUIRED(VERSION "3.0")
-PROJECT(SharemindLibVmi VERSION "0.1.0" LANGUAGES "C")
+PROJECT(SharemindLibVmi VERSION "0.2.0" LANGUAGES "CXX")
 
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
@@ -27,12 +27,14 @@ FIND_PACKAGE(SharemindCMakeHelpers REQUIRED)
 
 SharemindSetProjectVersion()
 
+FIND_PACKAGE(SharemindCxxHeaders 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindVmM4 0.3.0 REQUIRED)
 
-SharemindSetC99CompileOptions()
+SharemindSetCxx11CompileOptions()
 
 FILE(GLOB_RECURSE SharemindLibVmi_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-FILE(GLOB_RECURSE SharemindLibVmi_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
+FILE(GLOB_RECURSE SharemindLibVmi_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 SharemindAddSharedLibrary("libvmi"
     OUTPUT_NAME "sharemind_vmi"

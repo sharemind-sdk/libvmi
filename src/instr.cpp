@@ -21,7 +21,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <sharemind/DebugOnly.h>
 #include <type_traits>
 
 

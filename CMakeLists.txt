@@ -26,7 +26,7 @@ INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 FIND_PACKAGE(SharemindCMakeHelpers 1.3 REQUIRED)
 
 FIND_PACKAGE(SharemindCxxHeaders 0.2.0 REQUIRED)
-FIND_PACKAGE(SharemindVmM4 0.3.0 REQUIRED)
+FIND_PACKAGE(SharemindVmM4 0.4.0 REQUIRED)
 
 SharemindSetCxx11CompileOptions()
 

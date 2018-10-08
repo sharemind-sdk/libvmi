@@ -62,7 +62,7 @@ SimpleUnorderedStringMap<VmInstructionInfo const &> createNameMap() {
                            '.');
         assert(numNamespaces >= 0u);
         using U = std::make_unsigned<decltype(numNamespaces)>::type;
-        size += static_cast<U>(numNamespaces);
+        size += static_cast<std::remove_cv<U>::type>(numNamespaces);
         ++size; // We count all components, not just namespaces
     }
     SimpleUnorderedStringMap<VmInstructionInfo const &> r(size);

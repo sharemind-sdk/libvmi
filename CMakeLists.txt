@@ -28,7 +28,14 @@ FIND_PACKAGE(SharemindCMakeHelpers 1.3 REQUIRED)
 FIND_PACKAGE(SharemindCxxHeaders 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindVmM4 0.3.0 REQUIRED)
 
-SharemindSetCxx11CompileOptions()
+IF("${SharemindCxxHeaders_VERSION}" VERSION_LESS "0.6.0")
+    SharemindSetCxx11CompileOptions()
+ELSEIF("${SharemindCMakeHelpers_VERSION}" VERSION_LESS "1.4")
+    MESSAGE(FATAL_ERROR
+            "Incompatible combination of CMakeHelpers and CxxHeaders versions!")
+ELSE()
+    SharemindSetCxx14CompileOptions()
+ENDIF()
 
 FILE(GLOB_RECURSE SharemindLibVmi_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 FILE(GLOB_RECURSE SharemindLibVmi_SOURCES

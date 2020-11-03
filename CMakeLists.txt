@@ -23,38 +23,40 @@ PROJECT(SharemindLibVmi VERSION 0.3.0 LANGUAGES "CXX")
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
-FIND_PACKAGE(SharemindCMakeHelpers 1.4 REQUIRED)
+FIND_PACKAGE(SharemindCMakeHelpers 1.6 REQUIRED)
 
-FIND_PACKAGE(SharemindCxxHeaders 0.2.0 REQUIRED)
-FIND_PACKAGE(SharemindVmM4 0.4.0 REQUIRED)
+FIND_PACKAGE(SharemindCxxHeaders 0.8.0 REQUIRED)
+FIND_PACKAGE(SharemindVmM4 0.5.0 REQUIRED)
 
+
+# LibVmi:
 SharemindSetCxx14CompileOptions()
-
 FILE(GLOB_RECURSE SharemindLibVmi_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 FILE(GLOB_RECURSE SharemindLibVmi_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-
-SharemindAddSharedLibrary("libvmi"
+SharemindAddSharedLibrary(LibVmi
     OUTPUT_NAME "sharemind_vmi"
     SOURCES ${SharemindLibVmi_SOURCES} ${SharemindLibVmi_HEADERS}
-    INCLUDE_DIRECTORIES
-        ${SharemindVmM4_INCLUDE_DIRS}
-    LEGACY_DEFINITIONS
-        ${SharemindVmM4_DEFINITIONS}
 )
-
+TARGET_INCLUDE_DIRECTORIES(LibVmi
+    INTERFACE
+        # $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src> # TODO
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+    )
+TARGET_LINK_LIBRARIES(LibVmi
+    PRIVATE
+        Sharemind::VmM4
+    PUBLIC
+        Sharemind::CxxHeaders
+    )
 INSTALL(FILES ${SharemindLibVmi_HEADERS}
         DESTINATION "include/sharemind/libvmi"
         COMPONENT "dev")
+SharemindCreateCMakeFindFilesForTarget(LibVmi
+    DEPENDENCIES
+        "SharemindCxxHeaders 0.8.0"
+    )
 
-# Install cmake files:
-SharemindCreateCMakeFindFiles(
-    INCLUDE_DIRS
-        "${CMAKE_INSTALL_PREFIX}/include"
-    LIBRARIES
-        "-L${CMAKE_INSTALL_PREFIX}/lib"
-        "-lsharemind_vmi"
-)
 
 # Packaging:
 SharemindSetupPackaging()
@@ -70,7 +72,7 @@ SharemindAddComponentPackage("dev"
     DEB_SECTION "libdevel"
     DEB_DEPENDS
         "libsharemind-vmi (= ${SharemindLibVmi_DEB_lib_PACKAGE_VERSION})"
-        "libsharemind-cxxheaders-dev (>= 0.2.0)"
+        "libsharemind-cxxheaders-dev (>= 0.8.0)"
         "libc6-dev (>= 2.19)"
 )
 SharemindAddComponentPackage("debug"

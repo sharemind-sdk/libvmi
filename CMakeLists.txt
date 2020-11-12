@@ -30,7 +30,6 @@ FIND_PACKAGE(SharemindVmM4 0.5.0 REQUIRED)
 
 
 # LibVmi:
-SharemindSetCxx14CompileOptions()
 FILE(GLOB_RECURSE SharemindLibVmi_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 FILE(GLOB_RECURSE SharemindLibVmi_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
